@@ -1,9 +1,24 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState, useMemo } from "react";
 import { useLoaderData } from "react-router";
 import App from "../App/App";
 
 const Apps = () => {
   const data = useLoaderData();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filter apps based on search term (case-insensitive)
+  const filteredApps = useMemo(() => {
+    if (!searchTerm.trim()) {
+      return data;
+    }
+    return data.filter((app) =>
+      app.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [data, searchTerm]);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <div className="min-h-screen bg-base-100">
@@ -17,7 +32,9 @@ const Apps = () => {
           </p>
         </div>
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-lg font-semibold ml-5">(132) Apps Found</h1>
+          <h1 className="text-lg font-semibold ml-5">
+            ({filteredApps.length}) Apps Found
+          </h1>
           <label className="input mr-6">
             <svg
               className="h-[1em] opacity-50"
@@ -35,15 +52,43 @@ const Apps = () => {
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
-            <input type="search" required placeholder="Search" />
+            <input
+              type="search"
+              placeholder="Search apps..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="input-bordered"
+            />
           </label>
         </div>
         <Suspense fallback={<div className="text-center">Loading...</div>}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
-            {data.map((singleApp) => (
-              <App key={singleApp.id} singleApp={singleApp}></App>
-            ))}
-          </div>
+          {filteredApps.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+              {filteredApps.map((singleApp) => (
+                <App key={singleApp.id} singleApp={singleApp}></App>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <div className="text-6xl mb-4">🔍</div>
+              <h2 className="text-2xl font-bold text-gray-600 mb-2">
+                No App Found
+              </h2>
+              <p className="text-gray-500">
+                {searchTerm
+                  ? `No apps match "${searchTerm}"`
+                  : "No apps available"}
+              </p>
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm("")}
+                  className="btn btn-outline btn-primary mt-4"
+                >
+                  Clear Search
+                </button>
+              )}
+            </div>
+          )}
         </Suspense>
       </div>
     </div>
