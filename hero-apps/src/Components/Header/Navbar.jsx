@@ -2,6 +2,9 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import Logo from "../../assets/logo.png";
 import { FaGithub } from "react-icons/fa";
+import { IoHomeOutline } from "react-icons/io5";
+import { FaAppStore } from "react-icons/fa";
+import { MdOutlineInstallMobile } from "react-icons/md";
 
 const Navbar = () => {
   return (
@@ -87,7 +90,8 @@ const Navbar = () => {
                   isActive ? "active relative group" : "relative group"
                 }
               >
-                <span className="relative px-4 py-2 text-lg">
+                <span className="relative px-4 py-2 text-lg flex items-center">
+                  <IoHomeOutline className="mr-2" />
                   Home
                   <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#632EE3] transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
                 </span>
@@ -100,7 +104,8 @@ const Navbar = () => {
                   isActive ? "active relative group" : "relative group"
                 }
               >
-                <span className="relative px-4 py-2 text-lg">
+                <span className="relative px-4 py-2 text-lg flex items-center">
+                  <FaAppStore className="mr-2" />
                   Apps
                   <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#632EE3] transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
                 </span>
@@ -113,7 +118,8 @@ const Navbar = () => {
                   isActive ? "active relative group" : "relative group"
                 }
               >
-                <span className="relative px-4 py-2 text-lg">
+                <span className="relative px-4 py-2 text-lg flex items-center">
+                  <MdOutlineInstallMobile className="mr-2" />
                   Installation
                   <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#632EE3] transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
                 </span>
@@ -122,7 +128,10 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end ">
-          <a className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white" href="https://github.com/tuRjoX">
+          <a
+            className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white"
+            href="https://github.com/tuRjoX"
+          >
             <FaGithub />
             Contribution
           </a>

@@ -10,7 +10,7 @@ const TrendingApp = ({ data }) => {
   return (
     <div className="my-10 px-50 bg-[#FFF0E18]">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent mb-4">
+        <h1 className="text-6xl font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent mb-4">
           Trending Apps
         </h1>
         <h2 className="text-gray-600 text-lg mb-2">

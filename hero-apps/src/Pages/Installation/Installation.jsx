@@ -9,7 +9,6 @@ const Installation = () => {
   const [sortOrder, setSortOrder] = useState("default");
   const [loading, setLoading] = useState(true);
 
-  // Helper function to format downloads
   const formatDownloads = (downloads) => {
     if (downloads >= 100000000) {
       return `${(downloads / 1000000000).toFixed(1)}B`;
@@ -71,7 +70,6 @@ const Installation = () => {
         sortedApps.sort((a, b) => a.downloads - b.downloads);
         break;
       default:
-        // Keep original order
         break;
     }
 
@@ -179,57 +177,61 @@ const Installation = () => {
             </a>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="space-y-4">
             {installedApps.map((app) => (
               <div
                 key={app.id}
-                className="card bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="card bg-white shadow-lg transition-all duration-300 hover:shadow-[0_20px_50px_rgba(99,46,227,0.4),0_10px_25px_rgba(159,98,242,0.3)]"
               >
-                <figure className="px-6 pt-6">
-                  <img
-                    src={app.image}
-                    alt={app.title}
-                    className="w-20 h-20 object-cover rounded-xl"
-                  />
-                </figure>
-                <div className="card-body items-center text-center p-6">
-                  <h3 className="card-title text-lg mb-2">{app.title}</h3>
-                  <p className="text-sm text-gray-500 mb-1">
-                    by {app.companyName}
-                  </p>
-                  <p className="text-sm text-gray-400 mb-2">{app.size} MB</p>
+                <div className="flex items-center p-6">
+                  {/* App Icon */}
+                  <div className="flex-shrink-0 mr-4">
+                    <img
+                      src={app.image}
+                      alt={app.title}
+                      className="w-16 h-16 object-cover rounded-xl"
+                    />
+                  </div>
 
-                  <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
-                    <div className="flex items-center gap-1">
-                      <svg
-                        className="w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <span>{app.ratingAvg}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <svg
-                        className="w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>{formatDownloads(app.downloads)}</span>
+                  {/* App Info */}
+                  <div className="flex-grow min-w-0">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      {app.title}
+                    </h3>
+                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+                      <div className="flex items-center gap-1">
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span>{formatDownloads(app.downloads)}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span>{app.ratingAvg}</span>
+                      </div>
+                      <span className="text-gray-400">{app.size} MB</span>
                     </div>
                   </div>
 
-                  <div className="card-actions w-full">
+                  {/* Uninstall Button */}
+                  <div className="flex-shrink-0 ml-4">
                     <button
                       onClick={() => handleUninstall(app.id, app.title)}
-                      className="btn btn-error btn-outline w-full"
+                      className="btn btn-error btn-outline"
                     >
                       Uninstall
                     </button>

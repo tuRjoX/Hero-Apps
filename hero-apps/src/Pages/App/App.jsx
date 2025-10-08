@@ -4,7 +4,6 @@ import { FaStar, FaEye } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const App = ({ singleApp }) => {
-  // Helper function to format downloads
   const formatDownloads = (downloads) => {
     if (downloads >= 100000000) {
       return `${(downloads / 1000000000).toFixed(1)}B`;
@@ -15,7 +14,7 @@ const App = ({ singleApp }) => {
 
   return (
     <Link to={`/appDetails/${singleApp.id}`} className="block group">
-      <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100 h-[480px] w-[320px] mx-auto">
+      <div className="bg-white rounded-2xl shadow-lg transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100 h-[480px] w-[320px] mx-auto relative hover:shadow-[0_20px_50px_rgba(99,46,227,0.4),0_10px_25px_rgba(159,98,242,0.3)]">
         {/* App Icon Container */}
         <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 flex items-center justify-center h-[280px]">
           <div className="relative">
