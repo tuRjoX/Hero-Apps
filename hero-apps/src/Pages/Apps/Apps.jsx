@@ -47,20 +47,20 @@ const Apps = () => {
 
   return (
     <div className="min-h-screen bg-base-100">
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent mb-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent mb-4">
             Our All Applications
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-sm sm:text-base md:text-lg px-4">
             Explore All Apps on the Market developed by us. We code for Millions
           </p>
         </div>
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-lg font-semibold ml-5">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4 px-4 sm:px-0">
+          <h1 className="text-base sm:text-lg font-semibold order-2 sm:order-1">
             ({filteredApps.length}) Apps Found
           </h1>
-          <label className="input mr-6">
+          <label className="input w-full sm:w-auto max-w-xs order-1 sm:order-2">
             <svg
               className="h-[1em] opacity-50"
               xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ const Apps = () => {
               placeholder="Search apps..."
               value={searchTerm}
               onChange={handleSearchChange}
-              className="input-bordered"
+              className="input-bordered w-full"
             />
           </label>
         </div>

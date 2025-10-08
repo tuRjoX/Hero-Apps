@@ -4,14 +4,16 @@ import Logo from "../../assets/logo.png";
 const Footer = () => {
   return (
     <footer>
-      <div className="footer sm:footer-horizontal text-neutral-content px-40 py-10 justify-between border-b-2 border-gray-600 bg-[#001931]">
-        <aside className="items-center grid-flow-col">
-          <img src={Logo} alt="HERO.IO Logo" className="h-12" />
-          <p className="text-xl font-bold "> HERO.IO</p>
+      <div className="footer footer-vertical sm:footer-horizontal text-neutral-content px-4 sm:px-8 lg:px-40 py-6 sm:py-10 justify-center sm:justify-between border-b-2 border-gray-600 bg-[#001931]">
+        <aside className="items-center grid-flow-col justify-center sm:justify-start">
+          <img src={Logo} alt="HERO.IO Logo" className="h-10 sm:h-12" />
+          <p className="text-lg sm:text-xl font-bold"> HERO.IO</p>
         </aside>
-        <nav className="justify-end">
-          <h6 className="footer-title">Social Links</h6>
-          <div className="grid grid-flow-col gap-4">
+        <nav className="justify-center sm:justify-end">
+          <h6 className="footer-title text-center sm:text-left">
+            Social Links
+          </h6>
+          <div className="grid grid-flow-col gap-4 justify-center sm:justify-start">
             <a href="https://x.com/programminghero">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -48,8 +50,10 @@ const Footer = () => {
           </div>
         </nav>
       </div>
-        <div className="text-center py-5 bg-[#001931] text-neutral-content">
-        <p>Copyright © 2025 - All right reserved</p>
+      <div className="text-center py-4 sm:py-5 bg-[#001931] text-neutral-content px-4">
+        <p className="text-sm sm:text-base">
+          Copyright © 2025 - All right reserved
+        </p>
       </div>
     </footer>
   );

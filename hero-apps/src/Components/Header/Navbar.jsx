@@ -9,7 +9,7 @@ import { MdOutlineInstallMobile } from "react-icons/md";
 const Navbar = () => {
   return (
     <div>
-      <div className="navbar bg-base-100 px-10">
+      <div className="navbar bg-base-100 px-4 sm:px-6 lg:px-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -75,8 +75,8 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to="/" className="flex items-center gap-2">
-            <img src={Logo} alt="HERO.IO Logo" className="h-10" />
-            <span className="text-xl font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent">
+            <img src={Logo} alt="HERO.IO Logo" className="h-8 sm:h-10" />
+            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent">
               HERO.IO
             </span>
           </Link>

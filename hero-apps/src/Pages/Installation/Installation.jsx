@@ -93,23 +93,29 @@ const Installation = () => {
   }
 
   return (
-    <div className="min-h-screen bg-base-100 p-8">
+    <div className="min-h-screen bg-base-100 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold mb-4">Your Installed Apps</h1>
-          <p className="text-gray-600">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Your Installed Apps
+          </h1>
+          <p className="text-sm sm:text-base text-gray-600 px-2">
             Explore All Trending Apps on the Market developed by us
           </p>
         </div>
 
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-xl font-semibold">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-center sm:text-left">
             {installedApps.length} App{installedApps.length !== 1 ? "s" : ""}{" "}
             Installed
           </h2>
 
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-outline">
+          <div className="dropdown dropdown-end w-full sm:w-auto flex justify-center sm:justify-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-outline text-sm sm:text-base"
+            >
               Sort by Downloads
               <svg
                 className="w-4 h-4 ml-2"
@@ -166,13 +172,13 @@ const Installation = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-2xl font-semibold text-gray-600 mb-2">
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-600 mb-2">
               No Apps Installed
             </h3>
-            <p className="text-gray-500 mb-6">
+            <p className="text-sm sm:text-base text-gray-500 mb-6 px-4">
               You haven't installed any apps yet.
             </p>
-            <a href="/apps" className="btn btn-primary">
+            <a href="/apps" className="btn btn-primary text-sm sm:text-base">
               Browse Apps
             </a>
           </div>
@@ -183,22 +189,22 @@ const Installation = () => {
                 key={app.id}
                 className="card bg-white shadow-lg transition-all duration-300 hover:shadow-[0_20px_50px_rgba(99,46,227,0.4),0_10px_25px_rgba(159,98,242,0.3)]"
               >
-                <div className="flex items-center p-6">
+                <div className="flex items-center p-4 sm:p-6">
                   {/* App Icon */}
-                  <div className="flex-shrink-0 mr-4">
+                  <div className="flex-shrink-0 mr-3 sm:mr-4">
                     <img
                       src={app.image}
                       alt={app.title}
-                      className="w-16 h-16 object-cover rounded-xl"
+                      className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-xl"
                     />
                   </div>
 
                   {/* App Info */}
                   <div className="flex-grow min-w-0">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">
                       {app.title}
                     </h3>
-                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 mb-2">
                       <div className="flex items-center gap-1">
                         <svg
                           className="w-4 h-4"
@@ -228,10 +234,10 @@ const Installation = () => {
                   </div>
 
                   {/* Uninstall Button */}
-                  <div className="flex-shrink-0 ml-4">
+                  <div className="flex-shrink-0 ml-2 sm:ml-4">
                     <button
                       onClick={() => handleUninstall(app.id, app.title)}
-                      className="btn btn-error btn-outline"
+                      className="btn btn-error btn-outline btn-sm sm:btn-base text-xs sm:text-sm hover:bg-red-500 hover:border-red-500 transition-all duration-300"
                     >
                       Uninstall
                     </button>

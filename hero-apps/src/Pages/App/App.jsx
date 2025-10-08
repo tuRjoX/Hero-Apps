@@ -14,14 +14,14 @@ const App = ({ singleApp }) => {
 
   return (
     <Link to={`/appDetails/${singleApp.id}`} className="block group">
-      <div className="bg-white rounded-2xl shadow-lg transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100 h-[480px] w-[320px] mx-auto relative hover:shadow-[0_20px_50px_rgba(99,46,227,0.4),0_10px_25px_rgba(159,98,242,0.3)]">
+      <div className="bg-white rounded-2xl shadow-lg transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100 h-[420px] sm:h-[480px] w-[280px] sm:w-[320px] mx-auto relative hover:shadow-[0_20px_50px_rgba(99,46,227,0.4),0_10px_25px_rgba(159,98,242,0.3)]">
         {/* App Icon Container */}
-        <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-8 flex items-center justify-center h-[280px]">
+        <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 p-6 sm:p-8 flex items-center justify-center h-[240px] sm:h-[280px]">
           <div className="relative">
             <img
               src={singleApp.image}
               alt={singleApp.title}
-              className="w-24 h-24 object-cover rounded-2xl shadow-md group-hover:scale-110 transition-transform duration-300"
+              className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-2xl shadow-md group-hover:scale-110 transition-transform duration-300"
             />
           </div>
 
@@ -31,11 +31,11 @@ const App = ({ singleApp }) => {
         </div>
 
         {/* App Information */}
-        <div className="p-6">
-          <h2 className="text-xl font-bold text-gray-800 mb-2 line-clamp-1 group-hover:text-purple-600 transition-colors duration-300">
+        <div className="p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 line-clamp-1 group-hover:text-purple-600 transition-colors duration-300">
             {singleApp.title}
           </h2>
-          <p className="text-sm text-gray-500 mb-4 font-medium">
+          <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4 font-medium">
             by {singleApp.companyName}
           </p>
 
