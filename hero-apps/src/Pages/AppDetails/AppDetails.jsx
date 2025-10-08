@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLoaderData, useParams } from "react-router";
 import Downloads from "../../assets/icon-downloads.png";
 import Ratings from "../../assets/icon-ratings.png";
@@ -13,22 +13,37 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { addToStoredDB, isAppInstalled } from "../../Utility/addToDB";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AppDetails = () => {
   const { id } = useParams();
   const data = useLoaderData();
   const singleApp = data.find((app) => app.id == parseInt(id));
 
-  if (!singleApp) {
-    return (
-      <div className="container mx-auto px-4 py-8 text-center">
-        <img src={AppNotFound} alt="App Not Found" className="mx-auto mb-4" />
-        <h1 className="text-2xl font-bold">OPPS!! APP NOT FOUND</h1>
-        <p className="text-gray-400">The App you are requesting is not found on our system.  please try another apps</p>
-      </div>
-    );
-  }
+  const [installed, setInstalled] = useState(false);
 
+  useEffect(() => {
+    setInstalled(isAppInstalled(id));
+  }, [id]);
+
+  const handleInstall = (appId) => {
+    if (!installed) {
+      const success = addToStoredDB(appId);
+      if (success) {
+        setInstalled(true);
+        toast.success(`${singleApp.title} has been installed successfully!`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+    }
+  };
   const {
     title,
     image,
@@ -77,8 +92,16 @@ const AppDetails = () => {
               <h1 className="font-bold text-3xl">{reviews}</h1>
             </div>
           </div>
-          <button className="btn btn-outline btn-accent">
-            Install Now ({size} MB)
+          <button
+            onClick={() => handleInstall(id)}
+            disabled={installed}
+            className={`btn ${
+              installed
+                ? "btn-disabled bg-gray-400 text-white"
+                : "btn-outline btn-accent"
+            }`}
+          >
+            {installed ? "Installed" : `Install Now (${size} MB)`}
           </button>
         </div>
       </div>
@@ -160,6 +183,7 @@ const AppDetails = () => {
           productive throughout the day.
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };
