@@ -6,7 +6,7 @@ import { FaGithub } from "react-icons/fa";
 const Navbar = () => {
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm px-10">
+      <div className="navbar bg-base-100 px-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -28,30 +28,45 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2"
             >
               <li>
                 <NavLink
                   to="/"
-                  className={({ isActive }) => (isActive ? "active" : "")}
+                  className={({ isActive }) =>
+                    isActive ? "active relative group" : "relative group"
+                  }
                 >
-                  Home
+                  <span className="relative px-4 py-2">
+                    Home
+                    <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#632EE3] transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                  </span>
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/apps"
-                  className={({ isActive }) => (isActive ? "active" : "")}
+                  className={({ isActive }) =>
+                    isActive ? "active relative group" : "relative group"
+                  }
                 >
-                  Apps
+                  <span className="relative px-4 py-2">
+                    Apps
+                    <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#632EE3] transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                  </span>
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/installation"
-                  className={({ isActive }) => (isActive ? "active" : "")}
+                  className={({ isActive }) =>
+                    isActive ? "active relative group" : "relative group"
+                  }
                 >
-                  Installation
+                  <span className="relative px-4 py-2">
+                    Installation
+                    <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#632EE3] transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                  </span>
                 </NavLink>
               </li>
             </ul>
@@ -68,31 +83,46 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/"
-                className={({ isActive }) => (isActive ? "active" : "")}
+                className={({ isActive }) =>
+                  isActive ? "active relative group" : "relative group"
+                }
               >
-                Home
+                <span className="relative px-4 py-2 text-lg">
+                  Home
+                  <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#632EE3] transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                </span>
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/apps"
-                className={({ isActive }) => (isActive ? "active" : "")}
+                className={({ isActive }) =>
+                  isActive ? "active relative group" : "relative group"
+                }
               >
-                Apps
+                <span className="relative px-4 py-2 text-lg">
+                  Apps
+                  <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#632EE3] transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                </span>
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/installation"
-                className={({ isActive }) => (isActive ? "active" : "")}
+                className={({ isActive }) =>
+                  isActive ? "active relative group" : "relative group"
+                }
               >
-                Installation
+                <span className="relative px-4 py-2 text-lg">
+                  Installation
+                  <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#632EE3] transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                </span>
               </NavLink>
             </li>
           </ul>
         </div>
         <div className="navbar-end ">
-          <a className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white">
+          <a className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white" href="https://github.com/tuRjoX">
             <FaGithub />
             Contribution
           </a>

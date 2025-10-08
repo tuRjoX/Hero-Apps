@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useMemo } from "react";
+import React, { Suspense, useState, useMemo, useEffect } from "react";
 import { useLoaderData } from "react-router";
 import App from "../App/App";
 import AppNotFound from "../../assets/App-Error.png";
@@ -6,6 +6,15 @@ import AppNotFound from "../../assets/App-Error.png";
 const Apps = () => {
   const data = useLoaderData();
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredApps = useMemo(() => {
     if (!searchTerm.trim()) {
@@ -19,6 +28,22 @@ const Apps = () => {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-base-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="loading loading-spinner loading-lg text-[#632EE3] mb-4"></div>
+          <h2 className="text-xl font-semibold text-gray-700 mb-2">
+            Loading Applications
+          </h2>
+          <p className="text-gray-500">
+            Please wait while we fetch all the amazing apps...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-base-100">

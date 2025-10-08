@@ -23,9 +23,16 @@ const AppDetails = () => {
   const singleApp = data.find((app) => app.id == parseInt(id));
 
   const [installed, setInstalled] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setInstalled(isAppInstalled(id));
+    // Simulate loading time for better UX
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
   }, [id]);
 
   const handleInstall = (appId) => {
@@ -44,6 +51,43 @@ const AppDetails = () => {
       }
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-base-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="loading loading-spinner loading-lg text-[#632EE3] mb-4"></div>
+          <h2 className="text-xl font-semibold text-gray-700 mb-2">
+            Loading App Details
+          </h2>
+          <p className="text-gray-500">
+            Please wait while we fetch the app information...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!singleApp) {
+    return (
+      <div className="min-h-screen bg-base-100 flex items-center justify-center">
+        <div className="text-center">
+          <img
+            src={AppNotFound}
+            alt="App Not Found"
+            className="w-64 mx-auto mb-4"
+          />
+          <h1 className="text-3xl font-bold text-red-600 mb-2">
+            App Not Found
+          </h1>
+          <p className="text-gray-500">
+            The app you're looking for doesn't exist.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const {
     title,
     image,
@@ -55,6 +99,15 @@ const AppDetails = () => {
     ratings,
     size,
   } = singleApp;
+
+  // Helper function to format downloads
+  const formatDownloads = (downloads) => {
+    if (downloads >= 100000000) {
+      return `${(downloads / 1000000000).toFixed(1)}B`;
+    } else {
+      return `${(downloads / 1000000).toFixed(1)}M`;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-base-100 px-100">
@@ -79,7 +132,9 @@ const AppDetails = () => {
             <div className="items-center mx-auto">
               <img src={Downloads} alt="Downloads" />
               <p>Downloads</p>
-              <h1 className="font-bold text-3xl">{downloads}</h1>
+              <h1 className="font-bold text-3xl">
+                {formatDownloads(downloads)}
+              </h1>
             </div>
             <div className="items-center mx-auto">
               <img src={Ratings} alt="Average Ratings" />
@@ -154,9 +209,7 @@ const AppDetails = () => {
       <hr className="border-gray-300" />
       <div className="container mx-auto my-5 px-4">
         <h1 className="font-bold text-xl">Description</h1>
-        <p className="text-justify mt-2 text-gray-600 mb-5">
-          {description}
-        </p>
+        <p className="text-justify mt-2 text-gray-600 mb-5">{description}</p>
       </div>
       <ToastContainer />
     </div>

@@ -4,6 +4,15 @@ import { FaStar, FaEye } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const App = ({ singleApp }) => {
+  // Helper function to format downloads
+  const formatDownloads = (downloads) => {
+    if (downloads >= 100000000) {
+      return `${(downloads / 1000000000).toFixed(1)}B`;
+    } else {
+      return `${(downloads / 1000000).toFixed(1)}M`;
+    }
+  };
+
   return (
     <Link to={`/appDetails/${singleApp.id}`} className="block group">
       <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden border border-gray-100 h-[480px] w-[320px] mx-auto">
@@ -40,7 +49,7 @@ const App = ({ singleApp }) => {
                   Downloads
                 </span>
                 <span className="text-sm font-bold">
-                  {(singleApp.downloads / 1000000).toFixed(1)}M
+                  {formatDownloads(singleApp.downloads)}
                 </span>
               </div>
             </div>
@@ -54,10 +63,7 @@ const App = ({ singleApp }) => {
               </div>
             </div>
           </div>
-
         </div>
-
-        
       </div>
     </Link>
   );

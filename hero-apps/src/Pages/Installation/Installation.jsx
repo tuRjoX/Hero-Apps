@@ -9,6 +9,15 @@ const Installation = () => {
   const [sortOrder, setSortOrder] = useState("default");
   const [loading, setLoading] = useState(true);
 
+  // Helper function to format downloads
+  const formatDownloads = (downloads) => {
+    if (downloads >= 100000000) {
+      return `${(downloads / 1000000000).toFixed(1)}B`;
+    } else {
+      return `${(downloads / 1000000).toFixed(1)}M`;
+    }
+  };
+
   useEffect(() => {
     fetch("/appData.json")
       .then((response) => response.json())
@@ -71,9 +80,16 @@ const Installation = () => {
 
   if (loading) {
     return (
-      <div className="text-center mt-20">
-        <div className="loading loading-spinner loading-lg"></div>
-        <p className="mt-4">Loading your installed apps...</p>
+      <div className="min-h-screen bg-base-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="loading loading-spinner loading-lg text-[#632EE3] mb-4"></div>
+          <h2 className="text-xl font-semibold text-gray-700 mb-2">
+            Loading Installed Apps
+          </h2>
+          <p className="text-gray-500">
+            Please wait while we fetch your installed applications...
+          </p>
+        </div>
       </div>
     );
   }
@@ -83,7 +99,9 @@ const Installation = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-5xl font-bold mb-4">Your Installed Apps</h1>
-          <p className="text-gray-600">Explore All Trending Apps on the Market developed by us</p>
+          <p className="text-gray-600">
+            Explore All Trending Apps on the Market developed by us
+          </p>
         </div>
 
         <div className="flex justify-between items-center mb-8">
@@ -204,7 +222,7 @@ const Installation = () => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <span>{(app.downloads / 1000000).toFixed(1)}M</span>
+                      <span>{formatDownloads(app.downloads)}</span>
                     </div>
                   </div>
 
