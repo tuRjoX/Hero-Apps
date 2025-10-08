@@ -3,13 +3,12 @@ import { Link } from "react-router";
 import App from "../App/App";
 
 const TrendingApp = ({ data }) => {
-  // Sort apps by downloads in descending order and get top 8
   const trendingApps = data
     .sort((a, b) => b.downloads - a.downloads)
     .slice(0, 8);
 
   return (
-    <div className="py-8">
+    <div className="my-10 px-50 bg-[#FFF0E18]">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent mb-4">
           Trending Apps
