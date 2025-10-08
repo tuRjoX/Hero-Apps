@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router";
 import Logo from "../../assets/logo.png";
 import { FaGithub } from "react-icons/fa";
 
@@ -30,33 +31,63 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a>Home</a>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                <a>Apps</a>
+                <NavLink
+                  to="/apps"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  Apps
+                </NavLink>
               </li>
               <li>
-                <a>Installation</a>
+                <NavLink
+                  to="/installation"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
+                  Installation
+                </NavLink>
               </li>
             </ul>
           </div>
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <img src={Logo} alt="HERO.IO Logo" className="h-10" />
-            <a className="text-xl font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent">
               HERO.IO
-            </a>
-          </div>
+            </span>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Home</a>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <a>Apps</a>
+              <NavLink
+                to="/apps"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Apps
+              </NavLink>
             </li>
             <li>
-              <a>Installation</a>
+              <NavLink
+                to="/installation"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Installation
+              </NavLink>
             </li>
           </ul>
         </div>
