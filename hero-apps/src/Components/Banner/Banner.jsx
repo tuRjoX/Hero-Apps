@@ -18,17 +18,17 @@ const Banner = () => {
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-4 text-white text-center mt-10 pt-5'>
                     <div>
                         <p>Total Downloads</p>
-                        <h1 className='text-5xl font-bold'>29.6M</h1>
+                        <h1 className='text-5xl font-bold my-4'>29.6M</h1>
                         <p>21% more than last month</p>
                     </div>
                     <div>
                         <p>Total Reviews</p>
-                        <h1 className='text-5xl font-bold'>906K</h1>
+                        <h1 className='text-5xl font-bold my-4'>906K</h1>
                         <p>46% more than last month</p>
                     </div>
                     <div>
                         <p>Active Apps</p>
-                        <h1 className='text-5xl font-bold'>132+</h1>
+                        <h1 className='text-5xl font-bold my-4'>132+</h1>
                         <p>31 more will Launch46% more than last month</p>
                     </div>
                 </div>

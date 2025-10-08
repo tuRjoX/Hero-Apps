@@ -1,12 +1,12 @@
 import React, { Suspense, useState, useMemo } from "react";
 import { useLoaderData } from "react-router";
 import App from "../App/App";
+import AppNotFound from "../../assets/App-Error.png";
 
 const Apps = () => {
   const data = useLoaderData();
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filter apps based on search term (case-insensitive)
   const filteredApps = useMemo(() => {
     if (!searchTerm.trim()) {
       return data;
@@ -70,21 +70,22 @@ const Apps = () => {
             </div>
           ) : (
             <div className="text-center py-16">
-              <div className="text-6xl mb-4">🔍</div>
-              <h2 className="text-2xl font-bold text-gray-600 mb-2">
-                No App Found
-              </h2>
-              <p className="text-gray-500">
-                {searchTerm
-                  ? `No apps match "${searchTerm}"`
-                  : "No apps available"}
+              <img
+                src={AppNotFound}
+                alt="App Not Found"
+                className="mx-auto mb-4"
+              />
+              <h1 className="text-2xl font-bold">OPPS!! APP NOT FOUND</h1>
+              <p className="text-gray-400">
+                The App you are requesting is not found on our system. please
+                try another apps
               </p>
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm("")}
                   className="btn btn-outline btn-primary mt-4"
                 >
-                  Clear Search
+                  Go Back!
                 </button>
               )}
             </div>
