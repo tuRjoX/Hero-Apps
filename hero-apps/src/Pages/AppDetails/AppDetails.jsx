@@ -91,7 +91,6 @@ const AppDetails = () => {
     size,
   } = singleApp;
 
-  // Helper function to format downloads
   const formatDownloads = (downloads) => {
     if (downloads >= 100000000) {
       return `${(downloads / 1000000000).toFixed(1)}B`;
@@ -174,26 +173,26 @@ const AppDetails = () => {
       <hr className="border-gray-300" />
       <div className="container mx-auto my-5 px-4 sm:px-6 lg:px-8">
         <h1 className="font-bold text-lg sm:text-xl mb-4 text-left">Ratings</h1>
-        <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="bg-white p-3 sm:p-6 rounded-lg shadow-sm">
           {ratings && ratings.length > 0 ? (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {[...ratings].reverse().map((rating, index) => {
                 const maxCount = Math.max(...ratings.map((r) => r.count));
                 const percentage = (rating.count / maxCount) * 100;
                 return (
-                  <div key={index} className="flex items-center gap-4">
-                    <div className="w-16 text-sm font-medium text-gray-700 text-right">
+                  <div key={index} className="flex items-center gap-2 sm:gap-4">
+                    <div className="w-12 sm:w-16 text-xs sm:text-sm font-medium text-gray-700 text-right flex-shrink-0">
                       {rating.name}
                     </div>
-                    <div className="flex-1 relative">
-                      <div className="h-6 bg-gray-100 rounded-sm overflow-hidden">
+                    <div className="flex-1 relative min-w-0">
+                      <div className="h-4 sm:h-6 bg-gray-100 rounded-sm overflow-hidden">
                         <div
                           className="h-full bg-orange-500 transition-all duration-500 ease-out"
                           style={{ width: `${percentage}%` }}
                         ></div>
                       </div>
                     </div>
-                    <div className="w-16 text-sm text-gray-600 text-left">
+                    <div className="w-10 sm:w-16 text-xs sm:text-sm text-gray-600 text-left flex-shrink-0">
                       {rating.count >= 1000000
                         ? `${(rating.count / 1000000).toFixed(1)}M`
                         : rating.count >= 1000
@@ -203,35 +202,49 @@ const AppDetails = () => {
                   </div>
                 );
               })}
-              <div className="flex items-center gap-4 mt-6 pt-2 border-t border-gray-200">
-                <div className="w-16"></div>
-                <div className="flex-1 flex justify-between text-xs text-gray-500">
-                  <span>0</span>
-                  <span>
-                    {Math.round(
-                      Math.max(...ratings.map((r) => r.count)) / 4000
-                    ) * 1000}
-                  </span>
-                  <span>
-                    {Math.round(
-                      Math.max(...ratings.map((r) => r.count)) / 2000
-                    ) * 1000}
-                  </span>
-                  <span>
-                    {Math.round(
-                      Math.max(...ratings.map((r) => r.count)) / 1333
-                    ) * 1000}
-                  </span>
-                  <span>
-                    {Math.max(...ratings.map((r) => r.count)).toLocaleString()}
-                  </span>
+              <div className="flex items-center gap-2 sm:gap-4 mt-4 sm:mt-6 pt-2 border-t border-gray-200">
+                <div className="w-12 sm:w-16 flex-shrink-0"></div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between text-xs text-gray-500">
+                    <span>0</span>
+                    <span className="hidden sm:inline">
+                      {Math.round(
+                        Math.max(...ratings.map((r) => r.count)) / 4000
+                      ) * 1000}
+                    </span>
+                    <span>
+                      {Math.round(
+                        Math.max(...ratings.map((r) => r.count)) / 2000
+                      ) * 1000}
+                    </span>
+                    <span className="hidden sm:inline">
+                      {Math.round(
+                        Math.max(...ratings.map((r) => r.count)) / 1333
+                      ) * 1000}
+                    </span>
+                    <span>
+                      {Math.max(...ratings.map((r) => r.count)) >= 1000000
+                        ? `${(
+                            Math.max(...ratings.map((r) => r.count)) / 1000000
+                          ).toFixed(1)}M`
+                        : Math.max(...ratings.map((r) => r.count)) >= 1000
+                        ? `${Math.round(
+                            Math.max(...ratings.map((r) => r.count)) / 1000
+                          )}K`
+                        : Math.max(
+                            ...ratings.map((r) => r.count)
+                          ).toLocaleString()}
+                    </span>
+                  </div>
                 </div>
-                <div className="w-16"></div>
+                <div className="w-10 sm:w-16 flex-shrink-0"></div>
               </div>
             </div>
           ) : (
-            <div className="text-center p-8">
-              <p className="text-gray-500">No ratings data available</p>
+            <div className="text-center p-4 sm:p-8">
+              <p className="text-gray-500 text-sm sm:text-base">
+                No ratings data available
+              </p>
             </div>
           )}
         </div>
