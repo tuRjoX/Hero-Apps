@@ -4,15 +4,7 @@ import Downloads from "../../assets/icon-downloads.png";
 import Ratings from "../../assets/icon-ratings.png";
 import Review from "../../assets/icon-review.png";
 import AppNotFound from "../../assets/App-Error.png";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+
 import { addToStoredDB, isAppInstalled } from "../../Utility/addToDB";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,7 +19,6 @@ const AppDetails = () => {
 
   useEffect(() => {
     setInstalled(isAppInstalled(id));
-    // Simulate loading time for better UX
     const timer = setTimeout(() => {
       setLoading(false);
     }, 800);
@@ -182,50 +173,67 @@ const AppDetails = () => {
       </div>
       <hr className="border-gray-300" />
       <div className="container mx-auto my-5 px-4 sm:px-6 lg:px-8">
-        <h1 className="font-bold text-lg sm:text-xl mb-4 text-center lg:text-left">
-          Ratings
-        </h1>
-        <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm overflow-x-auto">
-          <ResponsiveContainer width="100%" height={250} minWidth={300}>
-            <BarChart
-              data={ratings}
-              margin={{
-                top: 20,
-                right: 15,
-                left: 15,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis
-                dataKey="name"
-                tick={{ fontSize: 12 }}
-                axisLine={{ stroke: "#e0e0e0" }}
-              />
-              <YAxis
-                tick={{ fontSize: 10 }}
-                axisLine={{ stroke: "#e0e0e0" }}
-                tickFormatter={(value) => `${value / 1000000}M`}
-              />
-              <Tooltip
-                formatter={(value) => [value.toLocaleString(), "Count"]}
-                labelStyle={{ color: "#333" }}
-                contentStyle={{
-                  backgroundColor: "#fff",
-                  border: "1px solid #ddd",
-                  borderRadius: "8px",
-                  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                }}
-              />
-              <Bar
-                dataKey="count"
-                fill="#FF8C00"
-                radius={[4, 4, 0, 0]}
-                stroke="#FF8C00"
-                strokeWidth={1}
-              />
-            </BarChart>
-          </ResponsiveContainer>
+        <h1 className="font-bold text-lg sm:text-xl mb-4 text-left">Ratings</h1>
+        <div className="bg-white p-6 rounded-lg shadow-sm">
+          {ratings && ratings.length > 0 ? (
+            <div className="space-y-4">
+              {[...ratings].reverse().map((rating, index) => {
+                const maxCount = Math.max(...ratings.map((r) => r.count));
+                const percentage = (rating.count / maxCount) * 100;
+                return (
+                  <div key={index} className="flex items-center gap-4">
+                    <div className="w-16 text-sm font-medium text-gray-700 text-right">
+                      {rating.name}
+                    </div>
+                    <div className="flex-1 relative">
+                      <div className="h-6 bg-gray-100 rounded-sm overflow-hidden">
+                        <div
+                          className="h-full bg-orange-500 transition-all duration-500 ease-out"
+                          style={{ width: `${percentage}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                    <div className="w-16 text-sm text-gray-600 text-left">
+                      {rating.count >= 1000000
+                        ? `${(rating.count / 1000000).toFixed(1)}M`
+                        : rating.count >= 1000
+                        ? `${Math.round(rating.count / 1000)}K`
+                        : rating.count.toLocaleString()}
+                    </div>
+                  </div>
+                );
+              })}
+              <div className="flex items-center gap-4 mt-6 pt-2 border-t border-gray-200">
+                <div className="w-16"></div>
+                <div className="flex-1 flex justify-between text-xs text-gray-500">
+                  <span>0</span>
+                  <span>
+                    {Math.round(
+                      Math.max(...ratings.map((r) => r.count)) / 4000
+                    ) * 1000}
+                  </span>
+                  <span>
+                    {Math.round(
+                      Math.max(...ratings.map((r) => r.count)) / 2000
+                    ) * 1000}
+                  </span>
+                  <span>
+                    {Math.round(
+                      Math.max(...ratings.map((r) => r.count)) / 1333
+                    ) * 1000}
+                  </span>
+                  <span>
+                    {Math.max(...ratings.map((r) => r.count)).toLocaleString()}
+                  </span>
+                </div>
+                <div className="w-16"></div>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center p-8">
+              <p className="text-gray-500">No ratings data available</p>
+            </div>
+          )}
         </div>
       </div>
       <hr className="border-gray-300" />
