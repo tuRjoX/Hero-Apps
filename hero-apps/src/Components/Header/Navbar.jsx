@@ -7,8 +7,12 @@ import { FaAppStore } from "react-icons/fa";
 import { MdOutlineInstallMobile } from "react-icons/md";
 
 const Navbar = () => {
+  const closeDropdown = () => {
+    document.activeElement?.blur();
+  };
+
   return (
-    <div>
+    <div className="sticky top-0 z-50 shadow-sm bg-base-100">
       <div className="navbar bg-base-100 px-4 sm:px-6 lg:px-10">
         <div className="navbar-start">
           <div className="dropdown">
@@ -39,6 +43,7 @@ const Navbar = () => {
                   className={({ isActive }) =>
                     isActive ? "active relative group" : "relative group"
                   }
+                  onClick={closeDropdown}
                 >
                   <span className="relative px-4 py-2">
                     Home
@@ -52,6 +57,7 @@ const Navbar = () => {
                   className={({ isActive }) =>
                     isActive ? "active relative group" : "relative group"
                   }
+                  onClick={closeDropdown}
                 >
                   <span className="relative px-4 py-2">
                     Apps
@@ -65,6 +71,7 @@ const Navbar = () => {
                   className={({ isActive }) =>
                     isActive ? "active relative group" : "relative group"
                   }
+                  onClick={closeDropdown}
                 >
                   <span className="relative px-4 py-2">
                     Installation
