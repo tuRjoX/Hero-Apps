@@ -74,6 +74,7 @@ const Installation = () => {
     }
 
     setInstalledApps(sortedApps);
+    document.activeElement.blur();
   };
 
   if (loading) {
