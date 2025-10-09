@@ -17,8 +17,8 @@ A modern, responsive web application showcase for discovering, installing, and m
 - **🔍 App Discovery**: Browse through curated collections of mobile apps
 - **📊 Interactive Analytics**: Visual rating charts using Recharts
 - **💾 Installation Management**: Install/uninstall apps with localStorage persistence
-- **🎨 Modern UI**: Beautiful gradient designs with brand colors (#632EE3 to #9F62F2)
-- **📱 Mobile Responsive**: Optimized for iPhone 13 and all mobile devices
+- **🎨 Modern UI**: Beautiful gradient designs with brand colors
+- **📱 Mobile Responsive**: Optimized for all mobile devices
 - **🔔 Toast Notifications**: Real-time feedback for user actions
 - **⚡ Loading States**: Smooth loading spinners throughout the app
 - **🎯 Hover Effects**: Interactive hover animations with gradient shadows
@@ -39,7 +39,6 @@ A modern, responsive web application showcase for discovering, installing, and m
 
 ### **Data Visualization**
 
-- **Recharts** - Powerful charting library for React
 - **Interactive Charts** - Bar charts for app ratings and statistics
 
 ### **User Experience**
@@ -65,7 +64,7 @@ A modern, responsive web application showcase for discovering, installing, and m
 ```
 hero-apps/
 ├── public/
-│   ├── appData.json          # App data and metadata
+│   ├── appData.json         # App data and metadata
 │   └── vite.svg             # Vite logo
 ├── src/
 │   ├── assets/              # Images and static assets
@@ -88,8 +87,8 @@ hero-apps/
 │   └── main.jsx             # Application entry point
 ├── package.json             # Dependencies and scripts
 ├── tailwind.config.js       # Tailwind CSS configuration
-├── vite.config.js          # Vite build configuration
-└── README.md               # Project documentation
+├── vite.config.js           # Vite build configuration
+└── README.md                # Project documentation
 ```
 
 ## 🚀 Getting Started
@@ -139,7 +138,7 @@ npm run preview
 
 The application is specifically optimized for mobile devices with:
 
-- **iPhone 13 Support**: Perfect viewport optimization for 390x844px
+
 - **Touch-Friendly**: All interactive elements sized for touch interfaces
 - **Responsive Typography**: Scalable text across all screen sizes
 - **Mobile-First Grid**: Adaptive layouts from mobile to desktop
@@ -173,14 +172,6 @@ The application is specifically optimized for mobile devices with:
 - **Image Optimization**: Responsive image sizing
 - **Efficient Bundling**: Vite's optimized build process
 - **Minimal Dependencies**: Carefully selected lightweight libraries
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## 📄 License
 
